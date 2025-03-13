@@ -1,14 +1,11 @@
+import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 
 export function TodoApp() {
   return (
     <>
       <div className="flex">
-        <label className="input input-bordered flex items-center gap-2">
-          <input type="text" className="grow" placeholder="Ajouter une tâche" />
-        </label>
-
-        <button className="btn btn-primary">+</button>
+        <AddTodo />
       </div>
 
       <div className="my-5 flex-column gap-5 w-full text-left">
