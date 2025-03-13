@@ -1,4 +1,15 @@
-function AddTodo() {
+type Props = {
+  // Fonction qui prend un paramètre une description
+  // et n'a pas de retour.
+  //
+  // On s'en sert pour transmettre l'information au parent
+  // de la tâche que l'on ajoute
+  onAddTodo: (description: string) => void;
+};
+
+function AddTodo({ onAddTodo }: Props) {
+  onAddTodo("TEST");
+
   return (
     <>
       <label className="input input-bordered flex items-center gap-2">

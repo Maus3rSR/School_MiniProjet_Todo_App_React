@@ -17,7 +17,11 @@ export function TodoApp() {
   return (
     <>
       <div className="flex">
-        <AddTodo />
+        <AddTodo
+          onAddTodo={(description) => {
+            console.log("Composant AddTodo me transmet une info", description);
+          }}
+        />
       </div>
 
       <div className="my-5 flex-column gap-5 w-full text-left">
