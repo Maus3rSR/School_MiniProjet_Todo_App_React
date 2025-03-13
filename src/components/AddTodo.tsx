@@ -20,7 +20,8 @@ function AddTodo({ onAddTodo }: Props) {
     // On récupère le champ "task"
     // C'est ce qu'on a mis en valeur de l'attribut HTML "name"
     const task = formData.get("task");
-    console.log(task);
+
+    if (task) onAddTodo(task as string); // Ici on peut considérer que le type est de type "string"
   }
 
   return (
