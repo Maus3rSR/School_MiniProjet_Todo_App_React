@@ -1,5 +1,3 @@
-import { InputHTMLAttributes, useState } from "react";
-
 type Props = {
   // Fonction qui prend un paramètre une description
   // et n'a pas de retour.
