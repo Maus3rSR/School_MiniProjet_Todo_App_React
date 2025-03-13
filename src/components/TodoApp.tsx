@@ -43,6 +43,9 @@ export function TodoApp() {
             description={todo.description}
             checked={todo.checked}
             onRemove={() => removeTodo(todo.id)}
+            // Pour le moment, c'est pas grave si ce n'est que la valeur false
+            // Car quand on changera l'état de l'item, on aura le nouveau rendu avec la valeur checked à true dans les données
+            onCheck={(value) => console.log("ON CHECK", value)}
           />
         ))}
       </div>
