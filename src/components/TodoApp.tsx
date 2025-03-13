@@ -19,11 +19,17 @@ export function TodoApp() {
     setTodos([
       ...todos,
       {
-        id: todos.length.toString(), // Temporaire, bad practice
+        id: Date.now().toString(), // Temporaire, bad practice
         description,
         checked: false,
       },
     ]);
+  }
+
+  function removeTodo(id: string) {
+    // On filtre pour ne garder que les todos qui ne correspondent pas à l'id de la tâche à supprimer
+    // Et on met à jour l'état local de notre composant
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
   return (
@@ -36,6 +42,7 @@ export function TodoApp() {
             key={todo.id}
             description={todo.description}
             checked={todo.checked}
+            onRemove={() => removeTodo(todo.id)}
           />
         ))}
       </div>
