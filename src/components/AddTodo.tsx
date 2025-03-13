@@ -31,7 +31,7 @@ function AddTodo({ onAddTodo }: Props) {
   return (
     // On submit nous permet à la fois de soumettre le formulaire avec un bouton
     // et également avec la touche entrée
-    <form onSubmit={onFormSubmit}>
+    <form onSubmit={onFormSubmit} className="flex">
       <label className="input input-bordered flex items-center gap-2">
         <input
           type="text"

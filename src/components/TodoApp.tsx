@@ -28,9 +28,7 @@ export function TodoApp() {
 
   return (
     <>
-      <div className="flex">
-        <AddTodo onAddTodo={addNewTodo} />
-      </div>
+      <AddTodo onAddTodo={addNewTodo} />
 
       <div className="my-5 flex-column gap-5 w-full text-left">
         {todos.map((todo) => (
