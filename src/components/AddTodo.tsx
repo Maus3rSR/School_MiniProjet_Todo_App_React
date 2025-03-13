@@ -1,3 +1,5 @@
+import { InputHTMLAttributes, useState } from "react";
+
 type Props = {
   // Fonction qui prend un paramètre une description
   // et n'a pas de retour.
@@ -8,15 +10,35 @@ type Props = {
 };
 
 function AddTodo({ onAddTodo }: Props) {
-  onAddTodo("TEST");
+  function onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    // FormData est un objet natif à JavaScript
+    // Quand on lui donne un ElementHTML de formulaire
+    // Il s'occupe d'aller récupérer les valeurs de nos champs
+    const formData = new FormData(event.currentTarget);
+
+    // On récupère le champ "task"
+    // C'est ce qu'on a mis en valeur de l'attribut HTML "name"
+    const task = formData.get("task");
+    console.log(task);
+  }
 
   return (
-    <>
+    // On submit nous permet à la fois de soumettre le formulaire avec un bouton
+    // et également avec la touche entrée
+    <form onSubmit={onFormSubmit}>
       <label className="input input-bordered flex items-center gap-2">
-        <input type="text" className="grow" placeholder="Ajouter une tâche" />
+        <input
+          type="text"
+          name="task"
+          className="grow"
+          placeholder="Ajouter une tâche"
+        />
       </label>
-      <button className="btn btn-primary">+</button>
-    </>
+      <button type="submit" className="btn btn-primary">
+        +
+      </button>
+    </form>
   );
 }
 
