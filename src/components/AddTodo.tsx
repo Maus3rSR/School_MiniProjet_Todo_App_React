@@ -15,13 +15,19 @@ function AddTodo({ onAddTodo }: Props) {
     // FormData est un objet natif à JavaScript
     // Quand on lui donne un ElementHTML de formulaire
     // Il s'occupe d'aller récupérer les valeurs de nos champs
+    const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
 
     // On récupère le champ "task"
     // C'est ce qu'on a mis en valeur de l'attribut HTML "name"
     const task = formData.get("task");
 
-    if (task) onAddTodo(task as string); // Ici on peut considérer que le type est de type "string"
+    if (!task) return;
+
+    // Ici on peut considérer que le type est de type "string"
+    onAddTodo(task as string);
+    // On supprime les valeurs des champs de notre formulaire
+    form.reset();
   }
 
   return (
