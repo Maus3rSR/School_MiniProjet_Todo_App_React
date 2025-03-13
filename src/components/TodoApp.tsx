@@ -15,6 +15,19 @@ export function TodoApp() {
     { id: "3", description: "Me faire défoncer à LoL", checked: true },
   ]);
 
+  // Tri pour avoir en premier les tâches non cochées
+  // voir la documentation sur sort
+  //
+  // Ici sort est une fonction qui mute le tableau original
+  // Donc on fait en sorte de travailler sur un nouveau tableau
+  // Qui sera une copie de todos
+  //
+  // Il existe .toSorted pour la version qui ne mute pas le tableau original, mais le tsconfig n'est pas configuré ici
+  // pour utiliser des fonctions récemment ajoutées par EcmaScript
+  const sortedTodos = Array.from(todos).sort((a, b) =>
+    a.checked === b.checked ? 0 : a.checked ? 1 : -1
+  );
+
   function addNewTodo(description: string) {
     setTodos([
       ...todos,
@@ -50,7 +63,7 @@ export function TodoApp() {
       <AddTodo onAddTodo={addNewTodo} />
 
       <div className="my-5 flex-column gap-5 w-full text-left">
-        {todos.map((todo) => (
+        {sortedTodos.map((todo) => (
           <TodoItem
             key={todo.id}
             description={todo.description}
