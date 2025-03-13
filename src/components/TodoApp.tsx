@@ -32,6 +32,19 @@ export function TodoApp() {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  function checkTodo(id: string, check: boolean) {
+    setTodos(
+      // .map nous permet de créer un nouveau tableau
+      // avec une fonction de transformation pour chaque élément du tableau initial
+      todos.map((todo) =>
+        // Si c'est le todo concerné par le changement,
+        // On modifie l'objet avec la valeur de la checkbox,
+        // Sinon on garde l'objet tel qu'il est
+        todo.id === id ? { ...todo, checked: check } : todo
+      )
+    );
+  }
+
   return (
     <>
       <AddTodo onAddTodo={addNewTodo} />
@@ -43,9 +56,7 @@ export function TodoApp() {
             description={todo.description}
             checked={todo.checked}
             onRemove={() => removeTodo(todo.id)}
-            // Pour le moment, c'est pas grave si ce n'est que la valeur false
-            // Car quand on changera l'état de l'item, on aura le nouveau rendu avec la valeur checked à true dans les données
-            onCheck={(value) => console.log("ON CHECK", value)}
+            onCheck={(value) => checkTodo(todo.id, value)}
           />
         ))}
       </div>
