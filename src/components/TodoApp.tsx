@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 
@@ -8,19 +9,28 @@ type TodoItem = {
 };
 
 export function TodoApp() {
-  const todos: TodoItem[] = [
+  const [todos, setTodos] = useState<TodoItem[]>([
     { id: "1", description: "Acheter des oranges", checked: false },
     { id: "2", description: "Courir avec le fraté", checked: true },
     { id: "3", description: "Me faire défoncer à LoL", checked: true },
-  ];
+  ]);
+
+  function addNewTodo(description: string) {
+    setTodos([
+      ...todos,
+      {
+        id: todos.length.toString(), // Temporaire, bad practice
+        description,
+        checked: false,
+      },
+    ]);
+  }
 
   return (
     <>
-      <AddTodo
-        onAddTodo={(description) => {
-          console.log("Composant AddTodo me transmet une info", description);
-        }}
-      />
+      <div className="flex">
+        <AddTodo onAddTodo={addNewTodo} />
+      </div>
 
       <div className="my-5 flex-column gap-5 w-full text-left">
         {todos.map((todo) => (
